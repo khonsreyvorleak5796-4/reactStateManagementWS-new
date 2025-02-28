@@ -1,16 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { AppDispatch } from "../store/store";
+import { addItem } from "../store/shoppingSlice";
+import { useDispatch } from "react-redux";
+
+
+
 
 export const AddItem = () => {
   const navigate = useNavigate();
   const [itemName, setItemName] = useState("");
   const [userName, setUserName] = useState(""); // State for user name
+  const dispatch = useDispatch<AppDispatch>();
 
 
   const handleAdd = () => {
     if (itemName.trim()) {
       setItemName(""); // Clear input
       navigate("/"); // Go back to list
+      dispatch(addItem(itemName));
     }
   };
 
@@ -21,7 +29,7 @@ export const AddItem = () => {
   };
 
   return (
-    <div className="p-6 min-h-screen min-w-screen bg-gray-100 flex flex-col items-center justify-center text-black">
+    <div className="p-6 min-h-screen min-w-screen bg-white flex flex-col items-center justify-center text-black">
       <h1 className="text-2xl font-bold mb-4">Add Shopping Item</h1>
       <input
         type="text"
