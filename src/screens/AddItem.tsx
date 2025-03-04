@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { AppDispatch } from "../store/store";
 import { addItem } from "../store/shoppingSlice";
+import { setName } from "../store/user";
 import { useDispatch } from "react-redux";
 
 
@@ -25,6 +26,7 @@ export const AddItem = () => {
   const handleSetName = () => {
     if (userName.trim()) {
       setUserName("");
+      dispatch(setName(userName));
     }
   };
 
